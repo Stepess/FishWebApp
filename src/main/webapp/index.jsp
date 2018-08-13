@@ -3,7 +3,7 @@
 <html>
 <body>
 <h2>Hello, Guest!</h2>
-<form name="loginForm" method="POST" action="controller">
+<form name="loginForm" method="POST" action="/app">
     <input type="hidden" name="command" value="login" />
     Login:<br/>
     <input type="text" name="login" value=""/>

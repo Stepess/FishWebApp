@@ -1,16 +1,14 @@
 package service.command;
 
 import service.resource.manager.PagePathManager;
+import service.resource.manager.ResourceManager;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class DefaultCommand implements Command{
-    private PagePathManager pathManager;
-
-    public DefaultCommand() {
-        pathManager = new PagePathManager();
-    }
-
     @Override
-    public String execute() {
-        return pathManager.getProperty("path.page.index");
+    public String execute(HttpServletRequest req) {
+        ResourceManager manager = new PagePathManager();
+        return manager.getProperty("path.page.index");
     }
 }

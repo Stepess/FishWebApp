@@ -6,6 +6,9 @@ public class User {
     private String password;
     private RoleEnum role;
 
+    public User() {
+    }
+
     public User(int id, String login, String password, RoleEnum role) {
         this.id = id;
         this.login = login;
@@ -43,5 +46,15 @@ public class User {
 
     public void setRole(RoleEnum role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                "}\n";
     }
 }

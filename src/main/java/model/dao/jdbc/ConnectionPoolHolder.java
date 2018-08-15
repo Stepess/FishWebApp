@@ -1,8 +1,8 @@
 package model.dao.jdbc;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import service.resource.manager.DataBaseManager;
-import service.resource.manager.ResourceManager;
+import model.resource.manager.DataBaseManager;
+import model.resource.manager.ResourceManager;
 
 import javax.sql.DataSource;
 

@@ -1,12 +1,12 @@
-package service.resource.manager;
+package model.resource.manager;
 
 import java.util.ResourceBundle;
 
-public class PagePathManager implements ResourceManager {
+public class DataBaseManager implements ResourceManager {
     private ResourceBundle bungle;
 
-    public PagePathManager() {
-        bungle = ResourceBundle.getBundle("path");
+    public DataBaseManager() {
+        bungle = ResourceBundle.getBundle("database");
     }
 
     @Override

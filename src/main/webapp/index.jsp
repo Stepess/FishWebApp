@@ -3,7 +3,7 @@
 <html>
 <body>
 <h2>Hello, Guest!</h2>
-<form name="loginForm" method="POST" action="/app">
+<form name="loginForm" method="POST" action="${pageContext.request.contextPath}/app">
     <input type="hidden" name="command" value="login" />
     Login:<br/>
     <input type="text" name="login" value=""/>

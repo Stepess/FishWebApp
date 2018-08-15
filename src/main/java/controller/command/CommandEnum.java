@@ -1,4 +1,4 @@
-package service.command;
+package controller.command;
 
 public enum CommandEnum {
     LOGIN {

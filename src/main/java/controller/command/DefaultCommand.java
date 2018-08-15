@@ -1,11 +1,11 @@
-package service.command;
+package controller.command;
 
-import service.resource.manager.PagePathManager;
-import service.resource.manager.ResourceManager;
+import model.resource.manager.PagePathManager;
+import model.resource.manager.ResourceManager;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class DefaultCommand implements Command{
+public class DefaultCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         ResourceManager manager = new PagePathManager();

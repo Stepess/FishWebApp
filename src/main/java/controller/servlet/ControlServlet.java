@@ -1,9 +1,9 @@
 package controller.servlet;
 
-import service.command.Command;
-import service.command.CommandFactory;
-import service.resource.manager.PagePathManager;
-import service.resource.manager.ResourceManager;
+import controller.command.Command;
+import controller.command.CommandFactory;
+import model.resource.manager.PagePathManager;
+import model.resource.manager.ResourceManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,9 +28,16 @@ public class ControlServlet extends HttpServlet {
         CommandFactory commandFactory = new CommandFactory();
         Command command = commandFactory.getCommandFromRequest(req);
         String page = command.execute(req);
+
         if (page != null) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            dispatcher.forward(req, resp);
+            if (page.contains("redirect:")) {
+                page = page.replaceFirst("redirect:","");
+                System.out.println(page);
+                resp.sendRedirect(page);
+            } else {
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+                dispatcher.forward(req, resp);
+            }
         }else {
             ResourceManager manager = new PagePathManager();
             page = manager.getProperty("path.page.index");

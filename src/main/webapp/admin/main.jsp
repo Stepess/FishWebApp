@@ -10,7 +10,7 @@
 <body>
 <h3>Welcome</h3>
 <hr/>
-${requestScope.login}, hello!
+${sessionScope.login}, hello!
 <hr/>
-<a href="/app">Logout</a>
+<a href="${pageContext.request.contextPath}/app">Logout</a>
 </body></html>

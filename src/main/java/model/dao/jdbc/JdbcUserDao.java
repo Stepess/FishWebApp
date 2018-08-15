@@ -3,14 +3,11 @@ package model.dao.jdbc;
 import model.dao.UserDao;
 import model.dao.mapper.UserMapper;
 import model.entity.User;
-import service.resource.manager.DataBaseManager;
-import service.resource.manager.ResourceManager;
+import model.resource.manager.DataBaseManager;
+import model.resource.manager.ResourceManager;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +51,47 @@ public class JdbcUserDao implements UserDao {
 
         }
         return users;
+    }
+
+    @Override
+    public boolean isUserExist(String login, String password) {
+        List<User> users = getAll();
+
+        for (User user: users) {
+            if (user.getLogin().equals(login) && user.getPassword().equals(password)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public User getByLogin(String login) {
+        UserMapper userMapper = new UserMapper();
+        User user = null;
+        try (
+                Connection connection = source.getConnection();
+                PreparedStatement statement =
+                        connection.prepareStatement(manager.getProperty("db.user.query.by.login"));
+        ) {
+            statement.setString(1, login);
+            try (
+                    ResultSet resultSet = statement.executeQuery()
+
+            ) {
+                while (resultSet.next()) {
+                    user = userMapper.extractFromResultSet(resultSet);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return user;
     }
 
     @Override

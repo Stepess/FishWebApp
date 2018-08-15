@@ -1,4 +1,4 @@
-package service.resource.manager;
+package model.resource.manager;
 
 public interface ResourceManager {
     String getProperty(String key);

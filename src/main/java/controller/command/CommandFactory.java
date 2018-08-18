@@ -7,7 +7,7 @@ public class CommandFactory {
         Command command = new DefaultCommand();
 
         String commandName = req.getParameter("command");
-
+        System.out.println("Command name: " + commandName);
         if (commandName == null || commandName.isEmpty()) {//TODO figure out why is empty
             return command;
         }

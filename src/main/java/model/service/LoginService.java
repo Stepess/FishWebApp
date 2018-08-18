@@ -14,8 +14,9 @@ public class LoginService {
     }
 
     public void setUserInSession(HttpSession session, String login, RoleEnum role) {
-        session.setAttribute("login", login);
+        System.out.println(role);
         session.setAttribute("role", role);
+        session.setAttribute("login", login);
     }
 
     public RoleEnum getUserRole(String login) {

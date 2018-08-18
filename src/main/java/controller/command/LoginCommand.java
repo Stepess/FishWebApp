@@ -22,6 +22,7 @@ public class LoginCommand implements Command {
 
         if (loginService.authorization(login, password)) {
             loginService.setUserInSession(req.getSession(), login, loginService.getUserRole(login));
+            //System.out.println(req.getSession().getAttribute("role"));
             return "redirect:" +  loginService.getUserRole(login).toString().toLowerCase()
                     + manager.getProperty("path.page.main");
         }

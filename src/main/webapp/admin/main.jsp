@@ -12,5 +12,8 @@
 <hr/>
 ${sessionScope.login}, hello!
 <hr/>
-<a href="${pageContext.request.contextPath}/app">Logout</a>
+<form name="logoutForm" method="POST" action="/app">
+    <input type="hidden" name="command" value="logout">
+    <input type="submit" value="Log out"/>
+</form>
 </body></html>

@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 
 public class LoginCommand implements Command {
     @Override
-    public String execute(HttpServletRequest req) {
+    public String execute(HttpServletRequest request) {
         ResourceManager manager = new PagePathManager();
 
-        String login = req.getParameter("login");
-        String password =  req.getParameter("password");
+        String login = request.getParameter("login");
+        String password =  request.getParameter("password");
 
         if (login == null || password == null){
             return manager.getProperty("path.page.index");
@@ -20,11 +20,12 @@ public class LoginCommand implements Command {
 
         LoginService loginService = new LoginService();
 
-        if (loginService.authorization(login, password)) {
-            loginService.setUserInSession(req.getSession(), login, loginService.getUserRole(login));
-            //System.out.println(req.getSession().getAttribute("role"));
-            return "redirect:" +  loginService.getUserRole(login).toString().toLowerCase()
+        if (loginService.checkLoginPassword(login, password)) {
+            loginService.setUserInSession(request.getSession(), login, loginService.getUserRole(login));
+            return "redirect:/" +  loginService.getUserRole(login).toString().toLowerCase()
                     + manager.getProperty("path.page.main");
+        } else {
+            request.setAttribute("errorLoginPassMessage", "Wrong login password");
         }
 
         return manager.getProperty("path.page.index");

@@ -2,10 +2,7 @@ package controller.servlet;
 
 import controller.command.Command;
 import controller.command.CommandFactory;
-import model.resource.manager.PagePathManager;
-import model.resource.manager.ResourceManager;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,16 +21,66 @@ public class ControlServlet extends HttpServlet {
         processRequest(req, resp);
     }
 
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CommandFactory commandFactory = new CommandFactory();
-        Command command = commandFactory.getCommandFromRequest(req);
+        Command command = commandFactory.getCommandFromRequest(request);
+        String page = command.execute(request);
+
+        if (page.contains("redirect:")){
+            response.sendRedirect(request.getContextPath() + page.replace("redirect:", ""));
+        } else {
+            request.getRequestDispatcher(page).forward(request, response);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*String action = req.getRequestURI();
+        action = action.replaceAll(".*//*app/", "");
+        CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
+        command = currentEnum.getCommand();
+
         String page = command.execute(req);
 
-        if (page != null) {
+        if (page.contains("redirect:")) {
+            page = page.replaceFirst("redirect:","");
+            System.out.println("redirect page = " + page);
+            resp.sendRedirect( page);
+        } else {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+            dispatcher.forward(req, resp);
+        }*/
+
+
+        /*if (page != null) {
             if (page.contains("redirect:")) {
                 page = page.replaceFirst("redirect:","");
-                System.out.println(page);
-                resp.sendRedirect(page);
+                System.out.println("redirect page = " + page);
+                resp.sendRedirect(req.getContextPath()+ page);
             } else {
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
                 dispatcher.forward(req, resp);
@@ -44,6 +91,6 @@ public class ControlServlet extends HttpServlet {
 //            request.getSession().setAttribute("nullPage",
 //                    MessageManager.getProperty("message.nullpage"));
             resp.sendRedirect(req.getContextPath() + page);
-        }
+        }*/
     }
 }

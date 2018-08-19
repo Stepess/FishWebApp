@@ -3,9 +3,9 @@
 <html>
 <body>
 <h2>Hello, Guest!</h2>
-<form name="loginForm" method="POST" action="${pageContext.request.contextPath}/app">
+<form name="loginForm" method="POST" action="${pageContext.request.contextPath}/app/login">
 
-    <input type="hidden" name="command" value="login" />
+   <%-- <input type="hidden" name="command" value="login" />--%>
     Login:<br/>
     <input type="text" name="login" value=""/>
     <br/>Password:<br/>

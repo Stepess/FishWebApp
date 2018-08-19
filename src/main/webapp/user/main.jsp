@@ -15,8 +15,9 @@ ${sessionScope.login}, hello!
 <h1> session role: ${sessionScope.role}</h1>
 <hr/>
 <h1>This is user page</h1>
-<form name="logoutForm" method="POST" action="/app">
+<a href="${pageContext.request.contextPath}/app/logout">Log out</a>
+<%--<form name="logoutForm" method="POST" action="/app">
     <input type="hidden" name="command" value="logout">
     <input type="submit" value="Log out"/>
-</form>
+</form>--%>
 </body></html>

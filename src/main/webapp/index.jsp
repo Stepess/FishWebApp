@@ -2,26 +2,9 @@
 
 <html>
 <body>
-<h2>Hello, Guest!</h2>
-<form name="loginForm" method="POST" action="${pageContext.request.contextPath}/app/login">
-
-   <%-- <input type="hidden" name="command" value="login" />--%>
-    Login:<br/>
-    <input type="text" name="login" value=""/>
-    <br/>Password:<br/>
-    <input type="password" name="password" value=""/>
-    <br/>
-    ${errorLoginPassMessage}
-    <br/>
-    ${wrongAction}
-    <br/>
-    ${nullPage}
-    <br/>
-    <input type="submit" value="Log in"/>
-</form>
+<h2>Hello, ${sessionScope.login}, ${sessionScope.role}!</h2>
+<jsp:include page="/WEB-INF/component/header.jsp"></jsp:include>
 <br/>
-<p>Debug:</p>
-<br/>
-${sessionScope.login}
+<a href="/${sessionScope.role}/main.jsp">Home</a>
 </body>
 </html>

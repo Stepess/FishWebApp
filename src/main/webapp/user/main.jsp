@@ -12,7 +12,6 @@
 <h3>Welcome</h3>
 <hr/>
 ${sessionScope.login}, hello!
-<h1> session role: ${sessionScope.role}</h1>
 <hr/>
 <h1>This is user page</h1>
 <a href="${pageContext.request.contextPath}/app/logout">Log out</a>

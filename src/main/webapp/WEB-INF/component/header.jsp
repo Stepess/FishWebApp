@@ -17,10 +17,19 @@
     </select>
 </form>
 <c:set var="language" value="${not empty param.language ? param.language : 'en_US'}" scope="session"/>
-<fmt:bundle basename="pagecontent" prefix = "label." >
-    <fmt:message key="login"/>
-    <fmt:message key="password"/>
-</fmt:bundle>
-<c:if test = "${sessionScope.role == 'USER'}">sadasdasd</c:if>
-
+<c:if test="${sessionScope.role == 'guest'}">
+    <fmt:bundle basename="pagecontent" prefix="label.">
+        <form name="loginForm" method="POST" action="${pageContext.request.contextPath}/app/login">
+            <fmt:message key="login"/><br/>
+            <input type="text" name="login" value=""/>
+            <br/>
+            <fmt:message key="password"/><br/>
+            <input type="password" name="password" value=""/>
+            <br/>
+                ${errorLoginPassMessage}
+            <br/>
+            <input type="submit" value="Log in"/>
+        </form>
+    </fmt:bundle>
+</c:if>
 <p>Hello, ${sessionScope.role}, ${sessionScope.login}</p>

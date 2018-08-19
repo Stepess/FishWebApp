@@ -13,6 +13,7 @@
 <hr/>
 ${sessionScope.login}, hello!
 <hr/>
+<h1>This is admin page</h1>
 <a href="${pageContext.request.contextPath}/app/logout">Log out</a>
 <%--<form name="logoutForm" method="POST" action="/app">
     <input type="hidden" name="command" value="logout">

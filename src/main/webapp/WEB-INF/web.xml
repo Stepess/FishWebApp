@@ -35,7 +35,15 @@
     <url-pattern>/app/*</url-pattern>
   </servlet-mapping>
 
+  <filter>
+    <filter-name>GuestFilter</filter-name>
+    <filter-class>controller.filters.GuestFilter</filter-class>
+  </filter>
 
+  <filter-mapping>
+    <filter-name>GuestFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <filter>
     <filter-name>EncodingFilter</filter-name>
@@ -57,5 +65,14 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <filter>
+    <filter-name>J</filter-name>
+    <filter-class>controller.filters.JspRedirectFilter</filter-class>
+  </filter>
 
+
+  <filter-mapping>
+    <filter-name>J</filter-name>
+    <url-pattern>/jsp/*</url-pattern>
+  </filter-mapping>
 </web-app>

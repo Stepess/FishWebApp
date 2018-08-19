@@ -19,7 +19,7 @@ public class LoginService {
     }
 
     public void setUserInSession(HttpSession session, String login, RoleEnum role) {
-        session.setAttribute("role", role);
+        session.setAttribute("role", role.getValue());
         session.setAttribute("login", login);
     }
 

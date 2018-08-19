@@ -14,7 +14,7 @@ public class LoginService {
         userDao = daoFactory.createUserDao();
     }
 
-    public boolean authorization(String login, String password) {
+    public boolean checkLoginPassword(String login, String password) {
         return userDao.isUserExist(login, password);
     }
 

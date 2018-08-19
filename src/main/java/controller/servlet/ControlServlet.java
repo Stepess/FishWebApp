@@ -1,5 +1,6 @@
 package controller.servlet;
 
+import controller.Utils.SessionRequestContent;
 import controller.command.Command;
 import controller.command.CommandFactory;
 
@@ -24,7 +25,10 @@ public class ControlServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CommandFactory commandFactory = new CommandFactory();
         Command command = commandFactory.getCommandFromRequest(request);
-        String page = command.execute(request);
+        SessionRequestContent content = new SessionRequestContent();
+        content.extractValues(request);
+        String page = command.execute(content);
+        content.acceptChanges(request);
 
         if (page.contains("redirect:")){
             response.sendRedirect(request.getContextPath() + page.replace("redirect:", ""));

@@ -20,12 +20,14 @@ public class LoginCommand implements Command {
         LoginService loginService = new LoginService();
 
         if (loginService.checkLoginPassword(login, password)) {
-            content.addAttributeToSetSession("login", login);
-            content.addAttributeToSetSession("role", loginService.getUserRole(login).getValue());
+            /*content.addAttributeToSetSession("login", login);
+            content.addAttributeToSetSession("role", loginService.getUserRole(login).getValue());*/
+            content.addAttributeToSession("login", login);
+            content.addAttributeToSession("role", loginService.getUserRole(login).getValue());
             return "redirect:/" +  loginService.getUserRole(login).toString().toLowerCase()
                     + manager.getProperty("path.page.main");
         } else {
-            content.addAttributeToSetRequest("errorLoginPassMessage", "Wrong login password");
+            content.addAttributeToRequest("errorLoginPassMessage", "Wrong login password");
             //request.setAttribute("errorLoginPassMessage", "Wrong login password");
         }
         return manager.getProperty("path.page.index");

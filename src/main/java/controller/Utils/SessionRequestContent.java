@@ -46,6 +46,16 @@ public class SessionRequestContent {
     }
 
     public void insertAttributes(HttpServletRequest request) {
+        for (String key: requestAttributes.keySet()) {
+            request.setAttribute(key, requestAttributes.get(key));
+        }
+        HttpSession session = request.getSession();
+        for (String key: sessionAttributes.keySet()) {
+            session.setAttribute(key, sessionAttributes.get(key));
+        }
+    }
+
+   /* public void insertAttributes(HttpServletRequest request) {
         for (String key: attributesToRequest.keySet()) {
             request.setAttribute(key, attributesToRequest.get(key));
         }
@@ -53,7 +63,8 @@ public class SessionRequestContent {
         for (String key: attributesToSession.keySet()) {
             session.setAttribute(key, attributesToSession.get(key));
         }
-    }
+    }*/
+
 
     public void invalidateSession(HttpServletRequest request) {
         if (invalidateSession) {
@@ -65,13 +76,22 @@ public class SessionRequestContent {
         invalidateSession = false;
     }
 
-    public void addAttributeToSetRequest(String key, Object attribute) {
+    public void addAttributeToRequest(String key, Object attribute) {
+        requestAttributes.put(key, attribute);
+    }
+
+    public void addAttributeToSession(String key, Object attribute) {
+        sessionAttributes.put(key, attribute);
+    }
+
+
+   /* public void addAttributeToSetRequest(String key, Object attribute) {
         attributesToRequest.put(key, attribute);
     }
 
     public void addAttributeToSetSession(String key, Object attribute) {
         attributesToSession.put(key, attribute);
-    }
+    }*/
 
     public Object getRequestAttribute(String key) {
         return requestAttributes.get(key);

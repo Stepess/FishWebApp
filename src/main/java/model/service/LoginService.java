@@ -18,6 +18,15 @@ public class LoginService {
         return userDao.isUserExist(login, password);
     }
 
+    /*public void markUserAsLoginned(Set<String> loginedUsers, String login) {
+        if (loginedUsers == null) {
+            loginedUsers = new TreeSet<>();
+        } else {
+            if ()
+        }
+
+    }
+*/
     public void setUserInSession(HttpSession session, String login, RoleEnum role) {
         session.setAttribute("role", role.getValue());
         session.setAttribute("login", login);

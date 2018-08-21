@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class ControlServlet extends HttpServlet {
 
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
@@ -23,9 +25,11 @@ public class ControlServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        SessionRequestContent content = new SessionRequestContent();
         CommandFactory commandFactory = new CommandFactory();
         Command command = commandFactory.getCommandFromRequest(request);
-        SessionRequestContent content = new SessionRequestContent();
+
         content.extractValues(request);
         String page = command.execute(content);
         content.acceptChanges(request);
